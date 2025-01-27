@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-export async function addproduct(prevState: any, formData: any) {
+export async function updateproduct(prevState: any, formData: any) {
   const id = formData.get('id');
   const name = formData.get('name');
   const price = parseInt(formData.get('price'));

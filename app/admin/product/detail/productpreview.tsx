@@ -1,3 +1,5 @@
+import { getProductID } from '@/app/actions/product/GET/getproductbyID';
+import { Products } from '@/app/types/product/ListProduct';
 import {
   Alert,
   Box,
@@ -7,28 +9,27 @@ import {
   rem,
   Skeleton,
   Text,
-  Title,
+  Title
 } from '@mantine/core';
-import React, { useEffect, useState } from 'react';
-import { Products } from '@/app/types/product/ListProduct';
-import { getProductID } from '@/app/actions/product/GET/getproductbyID';
+import { useEffect, useState } from 'react';
+import UpdatedProduct from './update/updated-product';
 
-const ProductPreview = ({id}:any) => {
-  const [product,setProduct]=useState<Products>();
+const ProductPreview = ({ id }: any) => {
+  const [product, setProduct] = useState<Products>();
   const PRIMARY_COL_HEIGHT = rem(450);
-  
-  useEffect(()=>{
-    dataFetch()
-  },[id])
 
-  const dataFetch =  async ()=>{
-    try{
-      const data = await getProductID({id})
+  useEffect(() => {
+    dataFetch()
+  }, [id])
+
+  const dataFetch = async () => {
+    try {
+      const data = await getProductID({ id })
       setProduct(data)
-    }catch(error:any){
+    } catch (error: any) {
       <Alert mt={15} variant="filled" color="green" title="">
         {error}
-    </Alert>
+      </Alert>
     }
   }
   /* const handlePrevImage = () => {
@@ -48,7 +49,7 @@ const ProductPreview = ({id}:any) => {
               {product?.image1 ? (
                 <img
                   src={`${product.image1}`}
-                  
+
                   style={{
                     width: '100%',
                     height: PRIMARY_COL_HEIGHT,
@@ -67,8 +68,8 @@ const ProductPreview = ({id}:any) => {
                 <IconChevronRight size={32} />
               </Button>
               */}
-              
-              
+
+
             </Box>
           </Grid.Col>
           <Grid.Col span={{ base: 12, md: 6, lg: 6 }}>
@@ -100,7 +101,15 @@ const ProductPreview = ({id}:any) => {
                   <Text size="md">{product?.descrip}</Text>
                 </Box>
                 <Box>
-                 
+
+                </Box>
+              </Grid.Col>
+              <Grid.Col>
+                <Box>
+                  {product && <UpdatedProduct data={product} />}
+                </Box>
+                <Box>
+
                 </Box>
               </Grid.Col>
             </Grid>

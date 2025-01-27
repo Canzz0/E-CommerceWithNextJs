@@ -11,7 +11,6 @@ export async function addproduct(prevState: any, formData: any) {
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
   if (nameisValid(name)) {
-    console.log('a')
     return {
       message: 'İsim Değerinde Özel Karakterler Bulunamaz',
     };
@@ -44,6 +43,9 @@ export async function addproduct(prevState: any, formData: any) {
         formData.append('image', image);
         formData.append('id', id);
 
+        for (let i = 0; i < 4; i++) {
+
+        }
         const response2 = await fetch('http://localhost:3000/api/product/File', {
           method: 'POST',
           headers: {
