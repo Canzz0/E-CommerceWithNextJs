@@ -1,6 +1,6 @@
 import { PrismaClient } from '@prisma/client';
-const prisma = new PrismaClient();
 import { getTokenFromHeader } from '../getTokenHeader/getTokenHeader';
+const prisma = new PrismaClient();
 const secretKey = process.env.SECRET_KEY;
 const jwt = require('jsonwebtoken');
 
@@ -15,7 +15,7 @@ export async function POST(req: any) {
     try {
       const token = getTokenFromHeader(req);
       const decoded = jwt.verify(token, secretKey);
-      
+
       if (decoded) {
         const NewCategory = await prisma.category.create({
           data: {
@@ -136,6 +136,7 @@ export async function PUT(req: any) {
       );
     }
   } catch (error: any) {
+    console.log(error)
     return new Response(JSON.stringify({ error: 'Güncelleme Hatası', details: error.message }), {
       headers: {
         'Content-Type': 'application/json',

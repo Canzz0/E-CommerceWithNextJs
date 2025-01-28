@@ -8,12 +8,12 @@ const secretKey = process.env.SECRET_KEY;
 export async function GET(req: any) {
   const url = new URL(req.url);
   const categoriesParam = url.searchParams.get('cr');
-  
-  const categories = categoriesParam ? categoriesParam.split(',') : ['all'];
-    const downprice = url.searchParams.get('dpr')!=='null' ? parseFloat(url.searchParams.get('dpr') || '0'): 0; // upr null ise 999999999
-  const upprice = url.searchParams.get('upr')!=='null' ? parseFloat(url.searchParams.get('upr') || '999999999') : 9999999; // upr null ise 999999999
 
-  
+  const categories = categoriesParam ? categoriesParam.split(',') : ['all'];
+  const downprice = url.searchParams.get('dpr') !== 'null' ? parseFloat(url.searchParams.get('dpr') || '0') : 0; // upr null ise 999999999
+  const upprice = url.searchParams.get('upr') !== 'null' ? parseFloat(url.searchParams.get('upr') || '999999999') : 9999999; // upr null ise 999999999
+
+
   let res = await prisma.product.findMany({
     where: {
       price: {
@@ -21,7 +21,7 @@ export async function GET(req: any) {
         lte: upprice,
       },
       // Eğer categories dizisi "all" değilse, belirtilen kategorilerle eşleşenleri al
-      ...(categoriesParam !== 'null'&& categoriesParam !== 'NaN' && categories[0] !== 'all' && {
+      ...(categoriesParam !== 'null' && categoriesParam !== 'NaN' && categories[0] !== 'all' && {
         categoryId: {
           in: categories,
         },
@@ -46,7 +46,7 @@ export async function POST(req: any) {
             name: post.name,
             price: post.price,
             descrip: post.descrip,
-            stock:post.stock,
+            stock: post.stock,
             image1: '',
             categoryId: '1',
           },
@@ -58,7 +58,7 @@ export async function POST(req: any) {
           },
           status: 201,
         });
-      
+
       } else {
         return new Response(
           JSON.stringify({ error: 'Kayıt Hatası', details: 'Yetkiniz bulunmuyor' }),
@@ -108,9 +108,9 @@ export async function DELETE(req: any) {
         status: 201,
       });
     } else {
-     
+
       return new Response(
-        
+
         JSON.stringify({ error: 'Kayıt Hatası', details: 'Yetkiniz bulunmuyor' }),
         {
           headers: {
@@ -146,7 +146,7 @@ export async function PUT(req: any) {
           price: post.price,
           descrip: post.descrip,
           image1: post.image,
-         
+
           categoryId: post.categoryId,
         },
       });
@@ -168,6 +168,7 @@ export async function PUT(req: any) {
       );
     }
   } catch (error) {
+    console.log(error)
     return new Response(JSON.stringify({ error }), {
       headers: {
         'Content-Type': 'application/json',

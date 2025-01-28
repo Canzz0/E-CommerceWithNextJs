@@ -34,7 +34,7 @@
     "next-cloudinary": "^6.10.1",
     "react": "18.3.1",
     "react-dom": "^18.3.1",
-    "zustand": "^5.0.0"
+    "zustand": "^5.0.3"
   },
   "devDependencies": {
     "@babel/core": "^7.24.7",

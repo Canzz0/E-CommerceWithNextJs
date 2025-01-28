@@ -1,12 +1,11 @@
 "use client"
-import { ProductInputs } from "@/app/types/product/addproduct";
-import { Box,  NumberInput, Textarea, TextInput } from "@mantine/core";
-import React from 'react';
+import { ProductInputs } from "@/app/types/product/AddProduct";
+import { NumberInput, Textarea, TextInput } from "@mantine/core";
 
-const AddproductInputs = ({ inputs, setInputs}: { inputs: ProductInputs; setInputs: any; }) => {
+const AddproductInputs = ({ inputs, setInputs }: { inputs: ProductInputs; setInputs: any; }) => {
   return (
     <>
-     
+
       <TextInput
         label="Ürün Adı"
         placeholder="Ürün Adı"
@@ -26,7 +25,7 @@ const AddproductInputs = ({ inputs, setInputs}: { inputs: ProductInputs; setInpu
         value={inputs.price}
         onChange={(value) => setInputs({ ...inputs, price: value })}
       />
-      
+
       <NumberInput
         label="Ürün Stok Adedi"
         placeholder="Ürün Stok Adedi"
@@ -36,7 +35,7 @@ const AddproductInputs = ({ inputs, setInputs}: { inputs: ProductInputs; setInpu
         value={inputs.stock}
         onChange={(value) => setInputs({ ...inputs, stock: value })}
       />
-      
+
       <Textarea
         mt="md"
         label="Ürün Açıklaması"

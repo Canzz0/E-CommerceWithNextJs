@@ -1,12 +1,21 @@
+import { updateproduct } from "@/app/actions/product/POST/uptadeproduct";
 import { Products } from "@/app/types/product/ListProduct";
 import { Box, Button, Modal } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import { useState } from "react";
+import { useFormState } from "react-dom";
 import UpdateInputs from "./update-inputs";
+
+const initialState = {
+   message: '',
+   id: '',
+};
 
 function UpdatedProduct({ data }: { data: Products }) {
    const [opened, { open, close }] = useDisclosure(false);
    const [image, setImage] = useState<string | null>(null);
+   const [state, formAction] = useFormState(updateproduct, initialState);
+
    const [inputs, setInputs] = useState({
       name: data.name,
       price: data.price,
@@ -32,26 +41,23 @@ function UpdatedProduct({ data }: { data: Products }) {
       }
    };
 
+   const handleUpdate = (formData: FormData) => {
+      // Mevcut form verilerini temizle
+      Array.from(formData.keys()).forEach(key => {
+         formData.delete(key);
+      });
 
-   const handleUpdate = () => {
+      // Yeni verileri ekles
       if (image) {
-         const formData = new FormData();
-         formData.append("image", image);
-         formData.append("name", inputs.name);
-         formData.append("price", inputs.price.toString());
-         formData.append("stock", inputs.stock.toString());
-         formData.append("descrip", inputs.descrip);
-         formData.append("id", data.id.toString());
-
+         formData.append("image1", image);
       } else {
-         const formData = new FormData();
-         formData.append("image", data.image1);
-         formData.append("name", inputs.name);
-         formData.append("price", inputs.price.toString());
-         formData.append("stock", inputs.stock.toString());
-         formData.append("descrip", inputs.descrip);
-         formData.append("id", data.id.toString());
+         formData.append("image1", data.image1);
       }
+      formData.append("name", inputs.name);
+      formData.append("price", inputs.price.toString());
+      formData.append("stock", inputs.stock.toString());
+      formData.append("descrip", inputs.descrip);
+      formData.append("id", data.id.toString());
    }
 
    return (<>
@@ -62,26 +68,31 @@ function UpdatedProduct({ data }: { data: Products }) {
       >Ürünü Düzenle</Button>
 
       <Modal opened={opened} onClose={close} size="xl" title="Ürünü Düzenle" centered>
-         <UpdateInputs inputs={inputs} setInputs={setInputs} />
-         <Button
-            mt="md"
-            variant="gradient"
-            gradient={{ from: 'yellow', to: 'orange', deg: 78 }}
-            onClick={handleNewImage}
-         >Yeni Resim Ekle</Button>
-         <Box mt="md" style={{ width: '30%', height: '30%', justifyContent: 'center', alignItems: 'center' }}>
-            <img
-               src={image || `${data.image1}`}
-               style={{
-                  width: '100%',
-                  height: '100%',
-                  objectFit: 'contain',
-               }}
-            />
-         </Box>
-         <Button mt="md" variant="gradient" gradient={{ from: 'yellow', to: 'orange', deg: 78 }}>Güncelle</Button>
-         <Box>
-         </Box>
+         <form action={async (formData: FormData) => {
+            handleUpdate(formData);
+            await formAction(formData);
+         }}>
+            <UpdateInputs inputs={inputs} setInputs={setInputs} />
+            <Button
+               mt="md"
+               variant="gradient"
+               gradient={{ from: 'yellow', to: 'orange', deg: 78 }}
+               onClick={handleNewImage}
+            >Yeni Resim Ekle</Button>
+            <Box mt="md" style={{ width: '30%', height: '30%', justifyContent: 'center', alignItems: 'center' }}>
+               <img
+                  src={image || `${data.image1}`}
+                  style={{
+                     width: '100%',
+                     height: '100%',
+                     objectFit: 'contain',
+                  }}
+               />
+            </Box>
+            <Button mt="md" variant="gradient" type="submit" gradient={{ from: 'yellow', to: 'orange', deg: 78 }}>Güncelle</Button>
+            <Box>
+            </Box>
+         </form>
       </Modal>
    </>)
 }

@@ -2,7 +2,7 @@
 
 import { cookies } from 'next/headers';
 
-export async function updatecategory(prevSstate:any,formData: any) {
+export async function updatecategory(prevSstate: any, formData: any) {
   const id = formData.get('id');
   const name = formData.get('name');
   const cookie = cookies();
@@ -20,10 +20,12 @@ export async function updatecategory(prevSstate:any,formData: any) {
     if (response.ok) {
       return {
         message: endResponse.message,
+        status: true
       };
     } else {
       return {
         message: endResponse.message,
+        status: false
       };
     }
   } catch (error) {

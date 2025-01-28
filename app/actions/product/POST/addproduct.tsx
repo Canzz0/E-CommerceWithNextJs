@@ -10,6 +10,8 @@ export async function addproduct(prevState: any, formData: any) {
   const stock = parseInt(formData.get('stock'));
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
+
+
   if (nameisValid(name)) {
     return {
       message: 'İsim Değerinde Özel Karakterler Bulunamaz',
@@ -39,7 +41,7 @@ export async function addproduct(prevState: any, formData: any) {
     if (response.ok) {
       const id = endResponse.NewProduct.id;
       try {
-        const formData = new FormData();
+        const imgData = new FormData();
         formData.append('image', image);
         formData.append('id', id);
 
@@ -51,10 +53,9 @@ export async function addproduct(prevState: any, formData: any) {
           headers: {
             Authorization: `Bearer ${token}`,
           },
-          body: formData,
+          body: imgData,
         });
 
-        const endResponseFile = await response2.json(); // Fetch response should be from response2
         if (!response2.ok) {
           throw new Error('Fotoğraf Yüklenemedi');
         }

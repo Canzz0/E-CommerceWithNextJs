@@ -13,7 +13,7 @@ export async function updateproduct(prevState: any, formData: any) {
   const token = cookie.get('Authorization')?.value;
   try {
     const response = await fetch('http://localhost:3000/api/product', {
-      method: 'UPDATE',
+      method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
@@ -21,25 +21,30 @@ export async function updateproduct(prevState: any, formData: any) {
       body: JSON.stringify({ id, name, price, descrip, stock }),
     });
     const endResponse = JSON.parse(await response.text());
-
+    console.log(image)
     if (response.ok) {
       try {
-        const formData = new FormData();
-        formData.append('image', image);
-        formData.append('id', id);
+        if (image && image.toString().startsWith('blob:')) {
+          const formData = new FormData();
+          formData.append('image', image);
+          formData.append('id', id);
 
-        const response2 = await fetch('http://localhost:3000/api/product/File', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: formData,
-        });
+          const response2 = await fetch('http://localhost:3000/api/product/File', {
+            method: 'POST',
+            headers: {
+              Authorization: `Bearer ${token}`,
+            },
+            body: formData,
+          });
 
-        const endResponseFile = await response2.json();
-        if (!response2.ok) {
-          throw new Error('Fotoğraf Yüklenemedi');
+          const endResponseFile = await response2.json();
+          if (!response2.ok) {
+            throw new Error('Fotoğraf Yüklenemedi');
+          }
+        } else {
+          null
         }
+
       } catch (error) {
         return {
           message: 'Fotoğraf Yüklenemedi',
