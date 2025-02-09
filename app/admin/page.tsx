@@ -24,7 +24,7 @@ const page = () => {
         </Box>
         <ProductList setId={setId} open={open} />
         <Modal opened={opened} size="xl" title="Ürün Önizleme" centered onClose={close}>
-          <ProductPreview id={id} />
+          <ProductPreview close={close} id={id} />
         </Modal>
       </Box>
     </Box>

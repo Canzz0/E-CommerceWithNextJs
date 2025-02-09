@@ -42,22 +42,26 @@ export async function addproduct(prevState: any, formData: any) {
       const id = endResponse.NewProduct.id;
       try {
         const imgData = new FormData();
-        formData.append('image', image);
-        formData.append('id', id);
+        
+        // Tüm resimleri kontrol et ve yükle
+        for (let i = 1; i <= 4; i++) {
+          const image = formData.get(`image${i}`);
+          if (image) {
+            imgData.append('image', image);
+            imgData.append('id', id);
+            
+            const response2 = await fetch('http://localhost:3000/api/product/File', {
+              method: 'POST',
+              headers: {
+                Authorization: `Bearer ${token}`,
+              },
+              body: imgData,
+            });
 
-        for (let i = 0; i < 4; i++) {
-
-        }
-        const response2 = await fetch('http://localhost:3000/api/product/File', {
-          method: 'POST',
-          headers: {
-            Authorization: `Bearer ${token}`,
-          },
-          body: imgData,
-        });
-
-        if (!response2.ok) {
-          throw new Error('Fotoğraf Yüklenemedi');
+            if (!response2.ok) {
+              throw new Error('Fotoğraf Yüklenemedi');
+            }
+          }
         }
       } catch (error) {
         return {

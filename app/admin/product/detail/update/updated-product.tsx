@@ -11,7 +11,7 @@ const initialState = {
    id: '',
 };
 
-function UpdatedProduct({ data }: { data: Products }) {
+function UpdatedProduct({ close2, data }: { close2: () => void, data: Products }) {
    const [opened, { open, close }] = useDisclosure(false);
    const [image, setImage] = useState<string | null>(null);
    const [state, formAction] = useFormState(updateproduct, initialState);
@@ -58,6 +58,8 @@ function UpdatedProduct({ data }: { data: Products }) {
       formData.append("stock", inputs.stock.toString());
       formData.append("descrip", inputs.descrip);
       formData.append("id", data.id.toString());
+      close2()
+      close()
    }
 
    return (<>

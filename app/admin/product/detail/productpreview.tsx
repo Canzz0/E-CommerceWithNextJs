@@ -13,8 +13,9 @@ import {
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
 import UpdatedProduct from './update/updated-product';
+import DeleteProduct from './delete/delete-product';
 
-const ProductPreview = ({ id }: any) => {
+const ProductPreview = ({ close, id }: any) => {
   const [product, setProduct] = useState<Products>();
   const PRIMARY_COL_HEIGHT = rem(450);
 
@@ -105,8 +106,9 @@ const ProductPreview = ({ id }: any) => {
                 </Box>
               </Grid.Col>
               <Grid.Col>
-                <Box>
-                  {product && <UpdatedProduct data={product} />}
+                <Box style={{ display: 'flex', justifyContent: 'space-between' }}>
+                  {product && <DeleteProduct close={close} productId={product?.id} />}
+                  {product && <UpdatedProduct close2={close} data={product} />}
                 </Box>
                 <Box>
 
