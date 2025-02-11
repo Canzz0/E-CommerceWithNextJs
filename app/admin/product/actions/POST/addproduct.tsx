@@ -1,7 +1,7 @@
 'use server';
 
 import { cookies } from 'next/headers';
-import { imgValid, nameisValid, stockValid } from '../../../utils/productvalidationUtils';
+import { imgValid, nameisValid, stockValid } from '../../../../utils/productvalidationUtils';
 export async function addproduct(prevState: any, formData: any) {
   const name = formData.get('name');
   const price = parseInt(formData.get('price'));
@@ -20,11 +20,6 @@ export async function addproduct(prevState: any, formData: any) {
   if (stockValid(stock)) {
     return {
       message: 'Stok Miktarı Gerçekçi Bir Rakam Olmalı',
-    };
-  }
-  if (imgValid(image)) {
-    return {
-      message: 'Medya Dosyası Boyutu En Fazla 4MB Olabilir',
     };
   }
   try {

@@ -1,8 +1,8 @@
 'use client';
 import { Box, Button, TextInput } from '@mantine/core';
 import { useFormState } from 'react-dom';
-import DeleteCategory from '../deletecategory/deletecategory';
 import { useCategoryStore } from '../store/category-store';
+import DeleteCategory from '../deletecategory/deletecategory';
 
 const initialState = {
   message: '',

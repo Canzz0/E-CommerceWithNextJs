@@ -1,7 +1,7 @@
 import { GetCategoryList } from "@/app/actions/category/GET/getCategoryList";
-import { addcategory } from "@/app/actions/category/POST/addcategoryproduction";
-import { deletecategory } from "@/app/actions/category/POST/deletecategoryproduction";
-import { updatecategory } from "@/app/actions/category/POST/updatecategoryproduction";
+import { addcategory } from "@/app/admin/category/actions/POST/addcategoryproduction";
+import { deletecategory } from "@/app/admin/category/actions/POST/deletecategoryproduction";
+import { updatecategory } from "@/app/admin/category/actions/POST/updatecategoryproduction";
 import { create } from "zustand";
 
 interface CategoryStore {

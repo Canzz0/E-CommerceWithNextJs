@@ -1,4 +1,4 @@
-import { getProductID } from '@/app/actions/product/GET/getproductbyID';
+import { getProductID } from '@/app/product/actions/GET/getproductbyID';
 import { Products } from '@/app/types/product/ListProduct';
 import {
   Alert,
@@ -12,10 +12,13 @@ import {
   Title
 } from '@mantine/core';
 import { useEffect, useState } from 'react';
-import UpdatedProduct from './update/updated-product';
-import DeleteProduct from './delete/delete-product';
+import UpdatedProduct from '../update/updated-product';
+import { useProductStore } from '../store/product-store';
+import DeleteProduct from '../delete/delete-product';
 
 const ProductPreview = ({ close, id }: any) => {
+  const { isSuccess } = useProductStore()
+
   const [product, setProduct] = useState<Products>();
   const PRIMARY_COL_HEIGHT = rem(450);
 
@@ -33,14 +36,12 @@ const ProductPreview = ({ close, id }: any) => {
       </Alert>
     }
   }
-  /* const handlePrevImage = () => {
-    setCurrentImageIndex((prev) => (prev > 0 ? prev - 1 : images.length - 1));
-  };
 
-  const handleNextImage = () => {
-    setCurrentImageIndex((prev) => (prev < images.length - 1 ? prev + 1 : 0));
-  }; */
-
+  useEffect(() => {
+    if (isSuccess) {
+      close()
+    }
+  }, [isSuccess])
   return (
     <>
       <Container mt="md" size="xl">

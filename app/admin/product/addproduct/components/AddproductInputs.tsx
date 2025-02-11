@@ -2,7 +2,7 @@
 import { ProductInputs } from "@/app/types/product/AddProduct";
 import { NumberInput, Textarea, TextInput } from "@mantine/core";
 
-const AddproductInputs = ({ inputs, setInputs }: { inputs: ProductInputs; setInputs: any; }) => {
+const AddproductInputs = () => {
   return (
     <>
 
@@ -10,10 +10,8 @@ const AddproductInputs = ({ inputs, setInputs }: { inputs: ProductInputs; setInp
         label="Ürün Adı"
         placeholder="Ürün Adı"
         rightSectionPointerEvents="all"
-        value={inputs.name}
         name="name"
         id="name"
-        onChange={(e) => setInputs({ ...inputs, name: e.target.value })}
         mt="md"
       />
       <NumberInput
@@ -22,8 +20,6 @@ const AddproductInputs = ({ inputs, setInputs }: { inputs: ProductInputs; setInp
         rightSectionPointerEvents="all"
         mt="md"
         name="price"
-        value={inputs.price}
-        onChange={(value) => setInputs({ ...inputs, price: value })}
       />
 
       <NumberInput
@@ -32,8 +28,7 @@ const AddproductInputs = ({ inputs, setInputs }: { inputs: ProductInputs; setInp
         rightSectionPointerEvents="all"
         mt="md"
         name="stock"
-        value={inputs.stock}
-        onChange={(value) => setInputs({ ...inputs, stock: value })}
+
       />
 
       <Textarea
@@ -43,8 +38,6 @@ const AddproductInputs = ({ inputs, setInputs }: { inputs: ProductInputs; setInp
         placeholder="Ürün Açıklaması"
         autosize
         name="descrip"
-        value={inputs.descrip}
-        onChange={(e) => setInputs({ ...inputs, descrip: e.target.value })}
       />
     </>
   );

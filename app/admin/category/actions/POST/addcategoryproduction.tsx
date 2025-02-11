@@ -26,7 +26,6 @@ export async function addcategory(prevState: any, formData: any) {
       };
     }
   } catch (error) {
-    console.log(error);
     return {
       message: error,
     };

@@ -1,7 +1,7 @@
 'use client'
 
 import { Button } from '@mantine/core'
-import { useProductStore } from '../../store/product-store';
+import { useProductStore } from '../store/product-store';
 interface DeleteProductProps {
   productId: string
   close:()=>void

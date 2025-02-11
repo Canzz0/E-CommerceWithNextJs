@@ -9,8 +9,10 @@ export async function updateproduct(prevState: any, formData: any) {
   const image = formData.get('image1');
   const descrip = formData.get('descrip');
   const stock = parseInt(formData.get('stock'));
+  const confirmImageChange = formData.get('confirmImageChange');
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
+
   try {
     const response = await fetch('http://localhost:3000/api/product', {
       method: 'PUT',
@@ -21,10 +23,10 @@ export async function updateproduct(prevState: any, formData: any) {
       body: JSON.stringify({ id, name, price, descrip, stock }),
     });
     const endResponse = JSON.parse(await response.text());
-    console.log(image)
     if (response.ok) {
-      try {
-        if (image && image.toString().startsWith('blob:')) {
+
+      if (image && image instanceof File) {  
+        try {
           const formData = new FormData();
           formData.append('image', image);
           formData.append('id', id);
@@ -36,20 +38,18 @@ export async function updateproduct(prevState: any, formData: any) {
             },
             body: formData,
           });
-
-          const endResponseFile = await response2.json();
+          const fileResponse = await response2.json();
           if (!response2.ok) {
-            throw new Error('Fotoğraf Yüklenemedi');
+            return {
+              message: 'Fotoğraf Yüklenemedi',
+            };
           }
-        } else {
-          null
+        } catch (error) {
+          return {
+            message: 'Fotoğraf Yüklenemedi',
+          };
         }
-
-      } catch (error) {
-        return {
-          message: 'Fotoğraf Yüklenemedi',
-        };
-      }
+      } 
       return {
         message: endResponse.message,
         id: endResponse.NewProduct.id,
@@ -60,6 +60,8 @@ export async function updateproduct(prevState: any, formData: any) {
       };
     }
   } catch (error) {
-    message: 'hata';
+    return {
+      message: 'Bir hata oluştu',
+    };
   }
 }

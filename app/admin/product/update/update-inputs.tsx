@@ -2,17 +2,16 @@ import { Box, NumberInput, Textarea } from "@mantine/core";
 
 import { TextInput } from "@mantine/core";
 
-function UpdateInputs({ inputs, setInputs }: { inputs: any, setInputs: any }) {
+function UpdateInputs({ data, state }: { data: any, state: any }) {
    return (
       <Box>
          <TextInput
             label="Ürün Adı"
             placeholder="Ürün Adı"
             rightSectionPointerEvents="all"
-            value={inputs.name}
             name="name"
             id="name"
-            onChange={(e) => setInputs({ ...inputs, name: e.target.value })}
+            defaultValue={data.name}
             mt="md"
          />
          <NumberInput
@@ -21,8 +20,8 @@ function UpdateInputs({ inputs, setInputs }: { inputs: any, setInputs: any }) {
             rightSectionPointerEvents="all"
             mt="md"
             name="price"
-            value={inputs.price}
-            onChange={(value) => setInputs({ ...inputs, price: Number(value) })}
+            defaultValue={data.price}
+
          />
 
          <NumberInput
@@ -31,8 +30,7 @@ function UpdateInputs({ inputs, setInputs }: { inputs: any, setInputs: any }) {
             rightSectionPointerEvents="all"
             mt="md"
             name="stock"
-            value={inputs.stock}
-            onChange={(value) => setInputs({ ...inputs, stock: Number(value) })}
+            defaultValue={data.stock}
          />
 
          <Textarea
@@ -42,8 +40,7 @@ function UpdateInputs({ inputs, setInputs }: { inputs: any, setInputs: any }) {
             placeholder="Ürün Açıklaması"
             autosize
             name="descrip"
-            value={inputs.descrip}
-            onChange={(e) => setInputs({ ...inputs, descrip: e.target.value })}
+            defaultValue={data.descrip}
          />
       </Box>
    )

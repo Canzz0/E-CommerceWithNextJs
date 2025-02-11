@@ -1,7 +1,7 @@
-import { getProducts } from "@/app/actions/product/GET/getproductList";
-import { addproduct } from "@/app/actions/product/POST/addproduct";
-import { DeleteProduct } from "@/app/actions/product/POST/deleteproduct";
-import { updateproduct } from "@/app/actions/product/POST/uptadeproduct";
+import { getProducts } from "@/app/product/actions/GET/getproductList";
+import { addproduct } from "@/app/admin/product/actions/POST/addproduct";
+import { DeleteProduct } from "@/app/admin/product/actions/POST/deleteproduct";
+import { updateproduct } from "@/app/admin/product/actions/POST/uptadeproduct";
 import { create } from "zustand";
 
 interface ProductStore {
@@ -11,6 +11,8 @@ interface ProductStore {
    addProduct: (prevState: any, formData: any) => Promise<any>;
    updateProduct: (prevState: any, formData: any) => Promise<any>;
    deleteProduct: (id: string) => Promise<any>;
+   isSuccess?: boolean;
+   setIsSuccess?: (isSuccess: boolean) => void;
 }
 
 export const useProductStore = create<ProductStore>((set, get) => ({
@@ -23,7 +25,7 @@ export const useProductStore = create<ProductStore>((set, get) => ({
 
    addProduct: async (prevState: any, formData: any) => {
       const res = await addproduct(prevState, formData);
-      if (res.message) {
+      if (res?.message) {
          const updatedProducts = await getProducts();
          set({ product: updatedProducts });
       }
@@ -32,7 +34,7 @@ export const useProductStore = create<ProductStore>((set, get) => ({
 
    updateProduct: async (prevState: any, formData: any) => {
       const res = await updateproduct(prevState, formData);
-      if (res.message) {
+      if (res?.message) {
          const updatedProducts = await getProducts();
          set({ product: updatedProducts });
       }

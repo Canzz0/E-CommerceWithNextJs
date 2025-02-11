@@ -2,7 +2,7 @@
 import { TextInput, PasswordInput, Paper, Title, Container, Button } from '@mantine/core';
 import classes from './login.module.css';
 import { useFormState } from 'react-dom';
-import { loginUser } from '../actions/login/loginuser';
+import { loginUser } from './actions/loginuser';
 import { useRouter } from 'next/navigation';
 
 const initialState = {

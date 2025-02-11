@@ -6,7 +6,6 @@ import { useCategoryStore } from './store/category-store';
 export function CategoryList({ open, setData }: any) {
   const { category, getCategory } = useCategoryStore();
 
-  console.log(category)
   useEffect(() => {
     getCategory();
   }, []);

@@ -3,11 +3,10 @@ import {  Button, Modal, Group } from "@mantine/core";
 import { useDisclosure } from "@mantine/hooks";
 import {  useEffect } from "react";
 import { useFormState } from "react-dom";
+import UpdateInputs from "./update-inputs";
 import { notifications } from "@mantine/notifications";
-import { useProductStore } from "../../store/product-store";
-import UpdateProductImages from "../../update/product-images";
-import UpdateInputs from "../../update/update-inputs";
-
+import UpdateProductImages from "./product-images";
+import { useProductStore } from "../store/product-store";
 
 const initialState = {
    message: '',

@@ -2,7 +2,7 @@
 import { Box, Container, Modal, Title } from '@mantine/core';
 import React, { useState } from 'react';
 import { ProductList } from './product/productlist';
-import AddProduct from './components/addproduct/addproduct';
+import AddProduct from './product/addproduct/addproduct';
 import classes from './adminpage.module.css';
 import ProductPreview from './product/detail/productpreview';
 import { useDisclosure } from '@mantine/hooks';
