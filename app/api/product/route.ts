@@ -71,7 +71,6 @@ export async function POST(req: any) {
         );
       }
     } catch (error: any) {
-      console.log(error.message)
       return new Response(JSON.stringify({ error: 'Kayıt Hatası', details: error.message }), {
         headers: {
           'Content-Type': 'application/json',
@@ -145,8 +144,8 @@ export async function PUT(req: any) {
           name: post.name,
           price: post.price,
           descrip: post.descrip,
-          image1: post.image,
-
+         
+          stock: post.stock,
           categoryId: post.categoryId,
         },
       });
@@ -168,7 +167,6 @@ export async function PUT(req: any) {
       );
     }
   } catch (error) {
-    console.log(error)
     return new Response(JSON.stringify({ error }), {
       headers: {
         'Content-Type': 'application/json',

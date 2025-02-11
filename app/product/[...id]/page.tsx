@@ -5,7 +5,7 @@ import { Box, Button, Container, Grid, Group, Skeleton, Text, Title, rem } from 
 import { ProductCard } from '@/app/Maincomponents/Productions/ProductCard';
 import { IconBrandWhatsapp } from '@tabler/icons-react';
 import { Products } from '@/app/types/product/ListProduct';
-import { getProductID } from '@/app/actions/product/GET/getproductbyID';
+import { getProductID } from '@/app/product/actions/GET/getproductbyID';
 
 const Page: React.FC = () => {
   const params = useParams();
@@ -14,7 +14,6 @@ const Page: React.FC = () => {
   useEffect(() => {
     const fetchData = async () => {
         const data = await getProductID({id});
-        console.log(data)
         setData(data);
     };
     fetchData();

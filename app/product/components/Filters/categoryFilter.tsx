@@ -14,7 +14,6 @@ const CategoryFilter = ({ setCat }: any) => {
   const params = useSearchParams();
   const SelectCat = params.get('cr');
 
-  console.log(selectCategories);
   // Kategorileri JSON formatında çekiyoruz
   useEffect(() => {
     const fetchCategories = async () => {

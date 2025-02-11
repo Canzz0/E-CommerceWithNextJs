@@ -12,7 +12,6 @@ cloudinary.config({
 export async function POST(request: Request): Promise<Response> {
   try {
     const formData = await request.formData();
-    console.log(formData);
     const files = formData.getAll('image') as File[];
     const id = formData.get('id');
 
@@ -60,7 +59,6 @@ export async function POST(request: Request): Promise<Response> {
     );
   } catch (error) {
     const errorMessage = (error as Error).message;
-    console.log(errorMessage)
     return NextResponse.json({ success: false, error: errorMessage }, { status: 500 });
   }
 }

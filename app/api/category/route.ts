@@ -136,7 +136,6 @@ export async function PUT(req: any) {
       );
     }
   } catch (error: any) {
-    console.log(error)
     return new Response(JSON.stringify({ error: 'Güncelleme Hatası', details: error.message }), {
       headers: {
         'Content-Type': 'application/json',
