@@ -5,7 +5,7 @@ import Link from 'next/link';
 import { Products } from '@/app/types/product/ListProduct';
 import { useEffect, useState } from 'react';
 import { useParams, useSearchParams } from 'next/navigation';
-import { SearchProductFetch } from '@/app/actions/product/GET/getproductsearchlist';
+import { SearchProductFetch } from '@/app/product/actions/GET/getproductsearchlist';
 
 
 export function ProductCard() {
