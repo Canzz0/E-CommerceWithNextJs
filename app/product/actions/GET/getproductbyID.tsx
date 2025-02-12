@@ -2,7 +2,7 @@
 
 export async function getProductID({id}:any) {
   try {
-   const response = await fetch(`http://localhost:3000/api/product/detail?idr=${id}`,{
+   const response = await fetch(`${process.env.URL}/api/product/detail?idr=${id}`,{
       cache:'no-store',
    });
 

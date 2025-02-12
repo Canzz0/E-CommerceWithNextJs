@@ -1,30 +1,30 @@
 "use client"
 import { Button, Container, Grid, rem, SimpleGrid, Text, ThemeIcon, Title } from '@mantine/core';
-import { IconCircleDotted, IconFileCode, IconFlame, IconReceiptOff } from '@tabler/icons-react';
+import { IconCircleDottedLetterC,  IconMist, IconStar, IconUser } from '@tabler/icons-react';
 import classes from './Description.module.css';
 
 const features = [
   {
-    icon: IconReceiptOff,
-    title: 'Free and open source',
-    description: 'All packages are published under MIT license, you can use Mantine in any project',
+    icon: IconCircleDottedLetterC,
+    title: 'Orijinal Ürün Garantisi',
+    description: 'Tüm saatlerimiz %100 orijinal olup 2 yıl garantilidir',
   },
   {
-    icon: IconFileCode,
-    title: 'TypeScript based',
-    description: 'Build type safe applications, all components and hooks export types',
+    icon: IconUser,
+    title: 'Uzman Kadro',
+    description: 'Deneyimli saat ustalarımız ile profesyonel servis hizmeti sunuyoruz',
   },
   {
-    icon: IconCircleDotted,
-    title: 'No annoying focus ring',
+    icon: IconMist,
+    title: 'Geniş Koleksiyon',
     description:
-      'With new :focus-visible selector focus ring will appear only when user navigates with keyboard',
+      'Dünyaca ünlü markaların en yeni ve özel koleksiyonlarını sizler için bir araya getiriyoruz',
   },
   {
-    icon: IconFlame,
-    title: 'Flexible',
+    icon: IconStar,
+    title: 'Özel Hizmet',
     description:
-      'Customize colors, spacing, shadows, fonts and many other settings with global theme object',
+      'Kişiye özel danışmanlık ve after-sales hizmetlerimiz ile yanınızdayız',
   },
 ];
 
@@ -54,11 +54,12 @@ export function Description() {
               <Grid gutter={80}>
         <Grid.Col span={{ base: 12, md: 5 }}>
           <Title className={classes.title} order={2}>
-            A fully featured React components library for your next project
+            Lüks ve Zarafeti Buluşturan Premium Saat Koleksiyonu
           </Title>
           <Text c="dimmed">
-            Build fully functional accessible web applications faster than ever – Mantine includes
-            more than 120 customizable components and hooks to cover you in any situation
+            En seçkin saat markalarının en yeni modellerini keşfedin. Uzman kadromuz, 
+            geniş koleksiyonumuz ve profesyonel hizmet anlayışımız ile hayalinizdeki 
+            saate sahip olmanız için buradayız.
           </Text>
 
           <Button
@@ -68,7 +69,7 @@ export function Description() {
             radius="md"
             mt="xl"
           >
-            Get started
+            Koleksiyonu Keşfet
           </Button>
         </Grid.Col>
         <Grid.Col span={{ base: 12, md: 7 }}>

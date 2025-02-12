@@ -14,7 +14,7 @@ export async function updateproduct(prevState: any, formData: any) {
   const token = cookie.get('Authorization')?.value;
 
   try {
-    const response = await fetch('http://localhost:3000/api/product', {
+    const response = await fetch(`${process.env.URL}/api/product`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',
@@ -31,7 +31,7 @@ export async function updateproduct(prevState: any, formData: any) {
           formData.append('image', image);
           formData.append('id', id);
 
-          const response2 = await fetch('http://localhost:3000/api/product/File', {
+          const response2 = await fetch(`${process.env.URL}/api/product/File`, {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${token}`,

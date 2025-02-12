@@ -3,7 +3,7 @@
 
 export async function getProducts() {
   try {
-    const response = await fetch('http://localhost:3000/api/product', {
+    const response = await fetch(`${process.env.URL}/api/product`, {
       cache: 'no-store',
     });
 

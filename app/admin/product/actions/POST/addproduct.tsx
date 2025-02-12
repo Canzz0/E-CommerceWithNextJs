@@ -8,6 +8,7 @@ export async function addproduct(prevState: any, formData: any) {
   const image = formData.get('image1');
   const descrip = formData.get('descrip');
   const stock = parseInt(formData.get('stock'));
+  const categoryId = formData.get('category_id');
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
 
@@ -23,13 +24,13 @@ export async function addproduct(prevState: any, formData: any) {
     };
   }
   try {
-    const response = await fetch('http://localhost:3000/api/product', {
+    const response = await fetch(`${process.env.URL}/api/product`, {
       method: 'POST',
       headers: {
         'Content-Type': 'application/json',
         Authorization: `Bearer ${token}`,
       },
-      body: JSON.stringify({ name, price, descrip, stock }),
+      body: JSON.stringify({ name, price, descrip, stock, categoryId }),
     });
     const endResponse = JSON.parse(await response.text());
 
@@ -45,7 +46,7 @@ export async function addproduct(prevState: any, formData: any) {
             imgData.append('image', image);
             imgData.append('id', id);
             
-            const response2 = await fetch('http://localhost:3000/api/product/File', {
+            const response2 = await fetch(`${process.env.URL}/api/product/File`, {
               method: 'POST',
               headers: {
                 Authorization: `Bearer ${token}`,

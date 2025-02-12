@@ -8,7 +8,7 @@ export async function updatecategory(prevSstate: any, formData: any) {
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
   try {
-    const response = await fetch('http://localhost:3000/api/category', {
+    const response = await fetch(`${process.env.URL}/api/category`, {
       method: 'PUT',
       headers: {
         'Content-Type': 'application/json',

@@ -1,10 +1,12 @@
 import { Box, NumberInput, Textarea } from "@mantine/core";
 
 import { TextInput } from "@mantine/core";
+import CategorySelect from "../../category/category-select";
 
 function UpdateInputs({ data, state }: { data: any, state: any }) {
    return (
       <Box>
+          <CategorySelect name="categoryId" id="categoryId" mt="md" defaultValue={data.categoryId} />
          <TextInput
             label="Ürün Adı"
             placeholder="Ürün Adı"
@@ -32,7 +34,7 @@ function UpdateInputs({ data, state }: { data: any, state: any }) {
             name="stock"
             defaultValue={data.stock}
          />
-
+        
          <Textarea
             mt="md"
             label="Ürün Açıklaması"

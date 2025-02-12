@@ -6,7 +6,7 @@ export async function deletecategory(id: string) {
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
   try {
-    const response = await fetch('http://localhost:3000/api/category', {
+    const response = await fetch(`${process.env.URL}/api/category`, {
       method: 'DELETE',
       headers: {
         'Content-Type': 'application/json',

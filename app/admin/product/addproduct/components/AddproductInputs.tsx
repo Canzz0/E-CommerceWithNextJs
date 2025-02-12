@@ -1,11 +1,12 @@
 "use client"
+import CategorySelect from "@/app/admin/category/category-select";
 import { ProductInputs } from "@/app/types/product/AddProduct";
 import { NumberInput, Textarea, TextInput } from "@mantine/core";
 
 const AddproductInputs = () => {
   return (
     <>
-
+      <CategorySelect  name="category_id" id="category_id" mt="md"/>
       <TextInput
         label="Ürün Adı"
         placeholder="Ürün Adı"
@@ -30,6 +31,7 @@ const AddproductInputs = () => {
         name="stock"
 
       />
+
 
       <Textarea
         mt="md"

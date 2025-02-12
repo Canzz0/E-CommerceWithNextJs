@@ -1,3 +1,4 @@
+"use server";
 export interface SearchParams {
   cr: string|null;
   dpr: string|null;
@@ -5,7 +6,7 @@ export interface SearchParams {
 }
 export const SearchProductFetch = async ({ cr, dpr, upr }: SearchParams) => {
   try {
-    let response = await fetch(`http://localhost:3000/api/product?cr=${cr}&dpr=${dpr}&upr=${upr}`, {
+    let response = await fetch(`${process.env.URL}/api/product?cr=${cr}&dpr=${dpr}&upr=${upr}`, {
       cache: 'no-store',
     });
     if (!response.ok) {

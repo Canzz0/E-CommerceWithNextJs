@@ -37,6 +37,7 @@ const ProductPreview = ({ close, id }: any) => {
     }
   }
 
+
   useEffect(() => {
     if (isSuccess) {
       close()

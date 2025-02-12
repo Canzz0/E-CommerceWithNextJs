@@ -40,10 +40,12 @@ export async function POST(req: any) {
         );
       }
     } catch (error: any) {
+
       return new Response(JSON.stringify({ error: 'Kayıt Hatası', details: error.message }), {
         headers: {
           'Content-Type': 'application/json',
         },
+        
         status: 400,
       });
     }

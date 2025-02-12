@@ -48,7 +48,7 @@ export async function POST(req: any) {
             descrip: post.descrip,
             stock: post.stock,
             image1: '',
-            categoryId: '1',
+            categoryId: post.categoryId,
           },
         });
         // Yüklenen dosyaların URL'lerini dön

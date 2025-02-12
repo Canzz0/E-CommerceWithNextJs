@@ -10,7 +10,7 @@ export async function addProductImage({id,token,formData}:any) {
               imgData.append('image', image);
               imgData.append('id', id);
               
-              const response2 = await fetch('http://localhost:3000/api/product/File', {
+              const response2 = await fetch(`${process.env.URL}/api/product/File`, {
                 method: 'POST',
                 headers: {
                   Authorization: `Bearer ${token}`,
