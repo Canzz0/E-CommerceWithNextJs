@@ -2,13 +2,14 @@ import CustomHeader from '@/components/CustomHeader/CustomHeader';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
 import { theme } from '../theme';
+import { Suspense } from 'react';
 
 export const metadata = {
   title: 'Mantine Next.js template',
   description: 'I am using Mantine with Next.js!',
 };
 
-export default function RootLayout({ children }: { children: any }) {
+const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
   return (
     <html lang="en">
       <head>
@@ -21,13 +22,15 @@ export default function RootLayout({ children }: { children: any }) {
       </head>
       <body>
         <MantineProvider theme={theme}>
-
-
-          <CustomHeader>
-            {children}
-          </CustomHeader>
+          <Suspense fallback={<div>Yükleniyor...</div>}>
+            <CustomHeader>
+              {children}
+            </CustomHeader>
+          </Suspense>
         </MantineProvider>
       </body>
     </html>
   );
-}
+};
+
+export default RootLayout;

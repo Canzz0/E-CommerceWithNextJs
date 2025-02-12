@@ -10,4 +10,4 @@ COPY . .
 RUN npx prisma migrate dev --schema=./prisma/schema.prisma
 
 EXPOSE 3000
-CMD ["npm", "run", "dev"]
+CMD ["sh", "-c", "npm run build && npm start"]
