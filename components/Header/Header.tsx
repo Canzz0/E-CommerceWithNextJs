@@ -54,14 +54,14 @@ export function Header() {
       >
         <ScrollArea mx="-md">
           <Divider my="sm" />
-          <Link href="/" className={classes.subLink}>
+          <Link onClick={closeDrawer} href="/" className={classes.subLink}>
             Anasayfa
           </Link>
-          <Link href="/product" className={classes.subLink}>
+          <Link onClick={closeDrawer} href="/product" className={classes.subLink}>
             Ürün Listesi
           </Link>
 
-          <Link href="/info" className={classes.subLink}>
+          <Link onClick={closeDrawer} href="/info" className={classes.subLink}>
             Hakkımızda
           </Link>
         </ScrollArea>
