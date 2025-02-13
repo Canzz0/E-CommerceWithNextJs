@@ -9,9 +9,9 @@ export async function updateproduct(prevState: any, formData: any) {
   const image = formData.get('image1');
   const descrip = formData.get('descrip');
   const stock = parseInt(formData.get('stock'));
-  const confirmImageChange = formData.get('confirmImageChange');
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
+  const isValidImage = image && image instanceof File && image.size > 0 && image.name !== 'undefined';
 
   try {
     const response = await fetch(`${process.env.URL}/api/product`, {
@@ -25,42 +25,50 @@ export async function updateproduct(prevState: any, formData: any) {
     const endResponse = JSON.parse(await response.text());
     if (response.ok) {
 
-      if (image && image instanceof File) {  
+      if (isValidImage) {
         try {
-          const formData = new FormData();
-          formData.append('image', image);
-          formData.append('id', id);
+          const imgData = new FormData();
+
+
+
+          imgData.append('image', image);
+          imgData.append('id', id);
 
           const response2 = await fetch(`${process.env.URL}/api/product/File`, {
             method: 'POST',
             headers: {
               Authorization: `Bearer ${token}`,
             },
-            body: formData,
+            body: imgData,
           });
-          const fileResponse = await response2.json();
+
           if (!response2.ok) {
-            return {
-              message: 'Fotoğraf Yüklenemedi',
-            };
+            throw new Error('Fotoğraf Yüklenemedi');
           }
+
+
         } catch (error) {
           return {
+            status: false,
             message: 'Fotoğraf Yüklenemedi',
           };
         }
-      } 
+      }
       return {
+        status: true,
         message: endResponse.message,
         id: endResponse.NewProduct.id,
       };
+
     } else {
       return {
+        status: false,
         message: endResponse.message,
       };
     }
   } catch (error) {
     return {
+      status: false,
       message: 'Bir hata oluştu',
     };
   }

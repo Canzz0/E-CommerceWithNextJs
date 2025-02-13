@@ -18,10 +18,12 @@ export async function addcategory(prevState: any, formData: any) {
     const endResponse = JSON.parse(await response.text());
     if (response.ok) {
       return {
+        status: true,
         message: endResponse.message,
       };
     } else {
       return {
+        status: false,
         message: endResponse.message,
       };
     }

@@ -17,10 +17,12 @@ export async function deletecategory(id: string) {
     const endResponse = JSON.parse(await response.text());
     if (response.ok) {
       return {
+        status: true,
         message: endResponse.message,
       };
     } else {
       return {
+        status: true,
         message: endResponse.message,
       };
     }

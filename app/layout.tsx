@@ -1,9 +1,10 @@
 import CustomHeader from '@/components/CustomHeader/CustomHeader';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
-import { theme } from '../theme';
 import { Suspense } from 'react';
-
+import { Toaster } from 'sonner';
+import { theme } from '../theme';
+import classes from './global.module.css';
 export const metadata = {
   title: 'Mantine Next.js template',
   description: 'I am using Mantine with Next.js!',
@@ -25,6 +26,12 @@ const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
           <Suspense fallback={<div>Yükleniyor...</div>}>
             <CustomHeader>
               {children}
+              <Toaster toastOptions={{
+                closeButton: true,
+                duration: 3000,
+                className: classes.toast,
+              }} />
+
             </CustomHeader>
           </Suspense>
         </MantineProvider>

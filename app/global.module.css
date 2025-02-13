@@ -1,0 +1,6 @@
+.toast {
+   background-color: light-dark(#FF8C00, var(--mantine-color-white));
+   color: light-dark(var(--mantine-color-white), var(--mantine-color-black));
+   /* Shimmer Button'daki gibi border-white/10 benzeri bir efekt */
+
+}

@@ -1,5 +1,5 @@
 'use client';
-import { Button, Modal, Notification, TextInput } from '@mantine/core';
+import { Button, Modal, TextInput } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
 import { useFormState } from 'react-dom';
 import { useCategoryStore } from '../store/category-store';
@@ -14,7 +14,7 @@ const AddCategory = () => {
 
   return (
     <>
-      {state?.message ? <Notification >{state.message}</Notification> : null}
+
       <Button
         onClick={open}
         variant="gradient"

@@ -1,12 +1,10 @@
 'use client';
-import { Button, Modal, Group } from '@mantine/core';
+import { Button, Group, Modal } from '@mantine/core';
 import { useDisclosure } from '@mantine/hooks';
-import AddproductInputs from './components/AddproductInputs';
-import AddProductImages from './components/AddProductImages';
 import { useFormState } from 'react-dom';
 import { useProductStore } from '../store/product-store';
-import { useEffect } from 'react';
-import { notifications } from '@mantine/notifications';
+import AddProductImages from './components/AddProductImages';
+import AddproductInputs from './components/AddproductInputs';
 
 const initialState = {
   message: '',
@@ -18,7 +16,7 @@ const AddProduct = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [state, formAction] = useFormState(addProduct, initialState);
 
- 
+
   return (
     <>
       <Button

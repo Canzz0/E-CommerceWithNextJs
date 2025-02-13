@@ -15,8 +15,14 @@ export async function DeleteProduct(id: string) {
             body: JSON.stringify({ id: id })
         });
         const data = await response.json();
-        return data;
+        return {
+            status: true,
+            message: data.message
+        };
     } catch (error) {
-        return { message: "Ürün silinirken bir hata oluştu" };
+        return {
+            status: false,
+            message: "Ürün silinirken bir hata oluştu"
+        };
     }
 }
