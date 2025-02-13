@@ -6,8 +6,8 @@ import { Toaster } from 'sonner';
 import { theme } from '../theme';
 import classes from './global.module.css';
 export const metadata = {
-  title: 'Mantine Next.js template',
-  description: 'I am using Mantine with Next.js!',
+  title: 'Demo E-Ticaret Sitesi',
+  description: 'Basit Kurulumu ve Kullanımı kolay, Performanslı, Güvenli, Hızlı, İşletmenize Uygun E-Ticaret Sitesi',
 };
 
 const RootLayout: React.FC<{ children: React.ReactNode }> = ({ children }) => {
