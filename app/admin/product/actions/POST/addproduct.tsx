@@ -11,7 +11,7 @@ export async function addproduct(prevState: any, formData: any) {
   const categoryId = formData.get('category_id');
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
-  const isValidImage = image && image instanceof File && image.size > 0 && image.name !== 'undefined';
+  const isValidImage = image && image.size > 0;
 
 
   if (nameisValid(name)) {
