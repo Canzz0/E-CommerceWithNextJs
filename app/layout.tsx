@@ -1,11 +1,12 @@
 import CustomHeader from '@/components/CustomHeader/CustomHeader';
 import { ColorSchemeScript, MantineProvider } from '@mantine/core';
 import '@mantine/core/styles.css';
+import { Metadata } from 'next';
 import { Suspense } from 'react';
 import { Toaster } from 'sonner';
 import { theme } from '../theme';
 import classes from './global.module.css';
-export const metadata = {
+export const metadata: Metadata = {
   title: 'Demo E-Ticaret Sitesi',
   description: 'Basit Kurulumu ve Kullanımı kolay, Performanslı, Güvenli, Hızlı, İşletmenize Uygun E-Ticaret Sitesi',
 };
