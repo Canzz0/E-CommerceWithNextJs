@@ -13,7 +13,6 @@ export async function addproduct(prevState: any, formData: any) {
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
 
-  console.log(image);
   // Server-side güvenli kontrol
   const isValidImage = image && image.size > 0;
 
@@ -57,10 +56,12 @@ export async function addproduct(prevState: any, formData: any) {
           });
 
           if (!response2.ok) {
+            console.log(response2);
             throw new Error('Fotoğraf Yüklenemedi');
           }
 
         } catch (error) {
+          console.log(error);
           return {
             status: false,
             message: 'Fotoğraf Yüklenemedi',
@@ -79,6 +80,10 @@ export async function addproduct(prevState: any, formData: any) {
       };
     }
   } catch (error) {
-    message: 'hata';
+    console.log(error);
+    return {
+      status: false,
+      message: 'hata',
+    };
   }
 }
