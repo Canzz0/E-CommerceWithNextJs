@@ -11,7 +11,7 @@ export async function updateproduct(prevState: any, formData: any) {
   const stock = parseInt(formData.get('stock'));
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
-  const isValidImage = image && typeof image === 'object' && 'size' in image && image.size > 0;
+  const isValidImage = image && image.size > 0;
 
   try {
     const response = await fetch(`${process.env.URL}/api/product`, {

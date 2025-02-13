@@ -13,8 +13,9 @@ export async function addproduct(prevState: any, formData: any) {
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
 
+  console.log(image);
   // Server-side güvenli kontrol
-  const isValidImage = image && typeof image === 'object' && 'size' in image && image.size > 0;
+  const isValidImage = image && image.size > 0;
 
   if (nameisValid(name)) {
     return {
