@@ -1,18 +1,18 @@
 'use client';
 import {
-  Group,
-  Divider,
   Box,
   Burger,
+  Divider,
   Drawer,
+  Group,
   ScrollArea,
 } from '@mantine/core';
 
-import classes from './Header.module.css';
 import { useDisclosure } from '@mantine/hooks';
-import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
 import Link from 'next/link';
 import AdminLogin from '../AdminLogin/AdminLogin';
+import { ColorSchemeToggle } from '../ColorSchemeToggle/ColorSchemeToggle';
+import classes from './Header.module.css';
 
 export function Header() {
   const [drawerOpened, { toggle: toggleDrawer, close: closeDrawer }] = useDisclosure(false);
@@ -54,14 +54,14 @@ export function Header() {
       >
         <ScrollArea mx="-md">
           <Divider my="sm" />
-          <Link href="/" className={classes.link}>
+          <Link href="/" className={classes.subLink}>
             Anasayfa
           </Link>
-          <Link href="/product" className={classes.link}>
+          <Link href="/product" className={classes.subLink}>
             Ürün Listesi
           </Link>
 
-          <Link href="/info" className={classes.link}>
+          <Link href="/info" className={classes.subLink}>
             Hakkımızda
           </Link>
         </ScrollArea>

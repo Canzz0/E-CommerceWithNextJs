@@ -1,14 +1,14 @@
 'use client';
-import { FC, PropsWithChildren } from 'react';
-import Header from '../Header/Header';
 import { AppShell } from '@mantine/core';
+import { FC, PropsWithChildren } from 'react';
 import { Footer } from '../Footer/Footer';
+import Header from '../Header/Header';
 
 const CustomHeader: FC<PropsWithChildren> = ({ children }) => {
 
 
   return (
-    <AppShell 
+    <AppShell
       header={{
         height: 60,
       }}
@@ -19,11 +19,11 @@ const CustomHeader: FC<PropsWithChildren> = ({ children }) => {
       <AppShell.Header>
         <Header />
       </AppShell.Header>
-   
-      <AppShell.Main w={'100%'}>
-        
 
-       
+      <AppShell.Main w={'auto'}  >
+
+
+
         {children}
       </AppShell.Main>
       <AppShell.Footer>

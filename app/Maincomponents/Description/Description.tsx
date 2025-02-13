@@ -1,6 +1,6 @@
 "use client"
-import { Button, Container, Grid, rem, SimpleGrid, Text, ThemeIcon, Title } from '@mantine/core';
-import { IconCircleDottedLetterC,  IconMist, IconStar, IconUser } from '@tabler/icons-react';
+import { Button, Grid, rem, SimpleGrid, Text, ThemeIcon, Title } from '@mantine/core';
+import { IconCircleDottedLetterC, IconMist, IconStar, IconUser } from '@tabler/icons-react';
 import classes from './Description.module.css';
 
 const features = [
@@ -50,15 +50,15 @@ export function Description() {
 
   return (
     <div className={classes.wrapper}>
-             
-              <Grid gutter={80}>
+
+      <Grid >
         <Grid.Col span={{ base: 12, md: 5 }}>
           <Title className={classes.title} order={2}>
             Lüks ve Zarafeti Buluşturan Premium Saat Koleksiyonu
           </Title>
           <Text c="dimmed">
-            En seçkin saat markalarının en yeni modellerini keşfedin. Uzman kadromuz, 
-            geniş koleksiyonumuz ve profesyonel hizmet anlayışımız ile hayalinizdeki 
+            En seçkin saat markalarının en yeni modellerini keşfedin. Uzman kadromuz,
+            geniş koleksiyonumuz ve profesyonel hizmet anlayışımız ile hayalinizdeki
             saate sahip olmanız için buradayız.
           </Text>
 
