@@ -12,7 +12,7 @@ cloudinary.config({
 export async function POST(request: Request): Promise<Response> {
   try {
     const formData = await request.formData();
-    const files = formData.getAll('image') as File[];
+    const files = formData.getAll('image');
     const id = formData.get('id');
 
     if (files.length === 0) {
@@ -20,7 +20,7 @@ export async function POST(request: Request): Promise<Response> {
     }
 
     const uploadResults = await Promise.all(
-      files.map(async (file) => {
+      files.map(async (file: any) => {
         const arrayBuffer = await file.arrayBuffer();
         const buffer = Buffer.from(arrayBuffer);
 
@@ -31,12 +31,11 @@ export async function POST(request: Request): Promise<Response> {
               if (error) {
                 reject(error);
               } else {
-                resolve(result!); // Burada result'un null olmayacağını varsayıyoruz
+                resolve(result!);
               }
             }
           );
 
-          // Buffer'ı stream'e yaz ve işlemi bitir
           uploadStream.end(buffer);
         });
       })
