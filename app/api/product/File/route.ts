@@ -1,12 +1,12 @@
-import { NextResponse } from 'next/server';
-import { v2 as cloudinary } from 'cloudinary';
 import { PrismaClient } from '@prisma/client';
+import { v2 as cloudinary } from 'cloudinary';
+import { NextResponse } from 'next/server';
 const prisma = new PrismaClient();
 
 cloudinary.config({
-  cloud_name: 'dj9sknitc',
-  api_key: '339673989917425',
-  api_secret: 'XVgNicWrFmgezIVj0N08uUO1xkc', // Hata düzeltildi: 'API_KEY' yerine 'API_SECRET'
+  cloud_name: process.env.CLOUDINARY_CLOUD_NAME,
+  api_key: process.env.CLOUDINARY_API_KEY,
+  api_secret: process.env.CLOUDINARY_API_SECRET,
 });
 
 export async function POST(request: Request): Promise<Response> {
