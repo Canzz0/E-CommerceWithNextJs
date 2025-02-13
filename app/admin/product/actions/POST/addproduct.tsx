@@ -2,6 +2,7 @@
 
 import { cookies } from 'next/headers';
 import { nameisValid, stockValid } from '../../../../utils/productvalidationUtils';
+
 export async function addproduct(prevState: any, formData: any) {
   const name = formData.get('name');
   const price = parseInt(formData.get('price'));
@@ -11,8 +12,9 @@ export async function addproduct(prevState: any, formData: any) {
   const categoryId = formData.get('category_id');
   const cookie = cookies();
   const token = cookie.get('Authorization')?.value;
-  const isValidImage = image && image instanceof File && image.size > 0 && image.name !== 'undefined';
 
+  // Server-side güvenli kontrol
+  const isValidImage = image && typeof image === 'object' && 'size' in image && image.size > 0;
 
   if (nameisValid(name)) {
     return {
@@ -24,6 +26,7 @@ export async function addproduct(prevState: any, formData: any) {
       message: 'Stok Miktarı Gerçekçi Bir Rakam Olmalı',
     };
   }
+
   try {
     const response = await fetch(`${process.env.URL}/api/product`, {
       method: 'POST',
@@ -41,8 +44,6 @@ export async function addproduct(prevState: any, formData: any) {
         try {
           const imgData = new FormData();
 
-
-
           imgData.append('image', image);
           imgData.append('id', id);
 
@@ -57,7 +58,6 @@ export async function addproduct(prevState: any, formData: any) {
           if (!response2.ok) {
             throw new Error('Fotoğraf Yüklenemedi');
           }
-
 
         } catch (error) {
           return {

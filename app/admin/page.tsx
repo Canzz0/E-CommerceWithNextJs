@@ -7,7 +7,7 @@ import classes from './adminpage.module.css';
 import AddProduct from './product/addproduct/addproduct';
 import ProductPreview from './product/detail/productpreview';
 import { ProductList } from './product/productlist';
-const page = () => {
+const Page = () => {
   const [opened, { open, close }] = useDisclosure(false);
   const [id, setId] = useState('');
 
@@ -31,4 +31,4 @@ const page = () => {
   );
 };
 
-export default page;
+export default Page;
