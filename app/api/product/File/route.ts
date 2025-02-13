@@ -19,7 +19,6 @@ export async function POST(request: Request): Promise<Response> {
       return NextResponse.json({ success: false, error: 'No files uploaded' }, { status: 400 });
     }
 
-    // Her bir dosyayı yükle ve URL'lerini al
     const uploadResults = await Promise.all(
       files.map(async (file) => {
         const arrayBuffer = await file.arrayBuffer();
